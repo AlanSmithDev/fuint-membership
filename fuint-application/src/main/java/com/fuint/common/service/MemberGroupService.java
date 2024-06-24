@@ -1,0 +1,64 @@
+package com.fuint.common.service;
+
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.fuint.common.dto.member.MemberGroupDto;
+import com.fuint.common.dto.member.UserGroupDto;
+import com.fuint.common.dto.system.AccountInfo;
+import com.fuint.common.param.MemberGroupPage;
+import com.fuint.framework.exception.BusinessCheckException;
+import com.fuint.framework.pagination.PaginationResponse;
+import com.fuint.repository.model.MtUserGroup;
+
+/**
+ * 会员分组业务接口
+ *
+ * Created by FSQ
+ * CopyRight https://www.fuint.cn
+ */
+public interface MemberGroupService extends IService<MtUserGroup> {
+
+    /**
+     * 分页查询分组列表
+     *
+     * @param memberGroupPage
+     * @return
+     */
+    PaginationResponse<UserGroupDto> queryMemberGroupListByPagination(MemberGroupPage memberGroupPage);
+
+    /**
+     * 新增会员分组
+     *
+     * @param  memberGroupDto
+     * @param  accountInfo
+     * @throws BusinessCheckException
+     * @return
+     */
+    MtUserGroup addMemberGroup(MemberGroupDto memberGroupDto, AccountInfo accountInfo) throws BusinessCheckException;
+
+    /**
+     * 修改卡券分组
+     *
+     * @param  memberGroupDto
+     * @param  accountInfo
+     * @throws BusinessCheckException
+     * @return
+     */
+    MtUserGroup updateMemberGroup(MemberGroupDto memberGroupDto, AccountInfo accountInfo) throws BusinessCheckException;
+
+    /**
+     * 根据组ID获取分组信息
+     *
+     * @param  id 分组ID
+     * @return
+     */
+    MtUserGroup queryMemberGroupById(Integer id);
+
+    /**
+     * 根据分组ID删除分组信息
+     *
+     * @param  id 分组ID
+     * @param  accountInfo 操作人
+     * @return
+     */
+    void deleteMemberGroup(Integer id, AccountInfo accountInfo) throws BusinessCheckException;
+}
